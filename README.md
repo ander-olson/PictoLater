@@ -66,7 +66,6 @@ I'll update the composite ProfileShow View to include a profile photo and a cove
 - [ ] Search for photos by tag
 - [ ] Pagination of the `FeedShow` and `ProfileShow` views
 - [ ] Support for multiple open sessions
-- [ ] User profile thumbnail
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
