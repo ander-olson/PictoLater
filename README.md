@@ -1,6 +1,6 @@
 # Pictolater
 
-* [Heroku App][http://pictolater.herokuapp.com]
+* [Heroku App](http://pictolater.herokuapp.com)
 
 ## Minimum Viable Product
 Pictolater is a clone of Instagram built on Rails and Backbone. Users can:
