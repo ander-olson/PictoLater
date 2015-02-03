@@ -1,0 +1,5 @@
+<ul>
+  <% profiles.each(function (profile) { %>
+    <li><a href="#profiles/<%= profile.id %>"><%= profile.get('username') %></a></li>
+  <% }) %>
+</ul>
