@@ -5,15 +5,17 @@
 ## Minimum Viable Product
 Pictolater is a clone of Instagram built on Rails and Backbone. Users can:
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
-- [ ] View profiles
+- [x] Create accounts
+- [X] Create sessions (log in)
+- [X] View profiles
+- [X] Support for multiple open sessions
 - [ ] Upload photos to profile
 - [ ] View photos
 - [ ] Comment on feed photos
 - [ ] Subscribe to users
 - [ ] View a feed of subscribed feed photos
 - [ ] Choose a photo to use as their profile or cover photo
+
 
 ## Design Docs
 * [View Wireframes][views]
@@ -24,7 +26,7 @@ Pictolater is a clone of Instagram built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Basic Profiles (~.5 days)
+### Phase 1: User Authentication, Basic Profiles (Completed)
 I will implement user authentication in Rails based on the practices learned at
 App Academy. By the end of this phase, users will be able to log in, create
 profiles, and view the outline of profiles. No photos will yet be visible at the
@@ -65,7 +67,6 @@ I'll update the composite ProfileShow View to include a profile photo and a cove
 - [ ] Tag photos
 - [ ] Search for photos by tag
 - [ ] Pagination of the `FeedShow` and `ProfileShow` views
-- [ ] Support for multiple open sessions
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
