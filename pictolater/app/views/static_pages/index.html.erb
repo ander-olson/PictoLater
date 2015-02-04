@@ -1,16 +1,48 @@
 <body>
-  <h1 class="main-title">
-    <a href="#">PictoLater</a>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">PictoLater</a>
+      </div>
 
-    <%= button_to "Sign Out", session_url, method: :delete, class: "add-button" %>
-  </h1>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="navbar-form navbar-left">
+          <div class="filepicker-holder">
+          </div>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <li><a href="#profiles/<%= current_user.id %>"><%= current_user.username %></a></li>
+          <% end %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#profiles">All Users</a></li>
+              <li><a href="#">Edit Profile</a></li>
+              <li class="divider"></li>
+              <li><%= link_to "Sign Out", session_url, method: :delete, class: "add-button" %>
+            </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <div id="main">
+  <div id="main" style="margin-top: 90px;">
 
   </div>
+  <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
+  <script> filepicker.setKey("<%= ENV['FILEPICKER_API_KEY'] %>"); </script>
 
-
-  <script>
-    $(Pictolater.initialize);
-  </script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script> $(Pictolater.initialize); </script>
 </body>

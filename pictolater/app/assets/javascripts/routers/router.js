@@ -1,28 +1,44 @@
 Pictolater.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
-    this.collection = options.collection;
-
+    this.photoCollection = options.photoCollection;
+    this.profileCollection = options.profileCollection;
+    this.attachFilePicker();
   },
 
   routes: {
-    "": "index",
-    "profiles/:id": "show"
+    "": "photoIndex",
+    "profiles": "profileIndex",
+    "profiles/:id": "show",
   },
 
-  index: function () {
-    var collection = this.collection;
-    collection.fetch();
+  attachFilePicker: function () {
+    var filePickerView = new Pictolater.Views.FilePicker({
+      collection: this.photoCollection
+    });
+    $('.filepicker-holder').html(filePickerView.render().$el);
+  },
+
+  photoIndex: function () {
+    this.photoCollection.fetch();
+    var photoIndexView = new Pictolater.Views.PhotoIndex({
+      collection: this.photoCollection
+    });
+    this._swapView(photoIndexView);
+  },
+
+  profileIndex: function () {
+    this.profileCollection.fetch();
 
     var indexView = new Pictolater.Views.ProfilesIndex({
-      collection: collection
+      collection: this.profileCollection
     });
 
     this._swapView(indexView);
   },
 
   show: function (id) {
-    var profile = this.collection.getOrFetch(id);
+    var profile = this.profileCollection.getOrFetch(id);
     var showView = new Pictolater.Views.ProfileShow({
       model: profile
     });

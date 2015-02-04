@@ -33,6 +33,12 @@ gem 'newrelic_rpm'
 
 gem 'backbone-on-rails'
 
+gem 'filepicker-rails'
+
+gem 'figaro'
+
+gem 'fancybox2-rails', '~> 0.2.8'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

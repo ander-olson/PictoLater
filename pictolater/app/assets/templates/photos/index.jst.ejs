@@ -1,0 +1,29 @@
+<% photos.each(function (photo) { %>
+  <div class='row'>
+    <div class="col-xs-6 col-lg-2 col-xl-2">
+      <ul style="list-style-type: none;
+          text-align: right;">
+        <li>
+          <a href="#/profiles/<%= photo.get('owner_id') %>">
+            <%= photo.get('username') %>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-xs-6 col-lg-8 col-xl-8">
+      <ul style="list-style-type: none;
+          width: 500px;
+          height: 500px;
+          overflow: hidden;
+          margin: 5px auto;
+          "
+          class="fancybox">
+          <img style="box-sizing: border-box; margin: 0px auto;"
+            class="square-preview" src="<%= photo.get('url') %>"
+            onerror="this.style.display='none';">
+      </ul>
+    </div>
+    <div class="col-lg-2 col-xl-2">
+    </div>
+  </div>
+<% }) %>

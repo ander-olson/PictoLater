@@ -5,8 +5,8 @@
 Photos
 
 ### Controllers
-Api::BlogsController (create, destroy, index, show)
-Api::PhotosController (create, new, destroy, show)
+* Api::ProfilesController (create, destroy, index, show)
+* Api::PhotosController (create, new, destroy, show)
 
 ### Views
 * profile/show.json.jbuilder
@@ -25,5 +25,5 @@ Api::PhotosController (create, new, destroy, show)
 * PhotoIndex
 
 ## Gems/Libraries
-Filepicker
-Aviary
+* Filepicker
+* Aviary
