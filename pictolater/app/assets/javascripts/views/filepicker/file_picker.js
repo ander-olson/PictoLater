@@ -1,8 +1,14 @@
 Pictolater.Views.FilePicker = Backbone.View.extend({
   template: JST["filepicker/choose"],
 
+  initialize: function () {
+    this.timeout = undefined;
+  },
+
   events: {
-    'click .glyphicon-camera': "uploadPhoto"
+    'click .glyphicon-camera': "uploadPhoto",
+    'dragenter .glyphicon-camera': "maybeUploadPhoto",
+    'dragleave .glyphicon-camera': "cancelUpload"
   },
 
   uploadPhoto: function() {
@@ -16,6 +22,17 @@ Pictolater.Views.FilePicker = Backbone.View.extend({
         });
         picker.collection.create(newPhoto)
     });
+  },
+
+  maybeUploadPhoto: function () {
+    var picker = this;
+    this.timeout = setTimeout(function () {
+      picker.uploadPhoto();
+    }, 800)
+  },
+
+  cancelUpload: function () {
+    clearTimeout(this.timeout);
   },
 
   render: function () {
