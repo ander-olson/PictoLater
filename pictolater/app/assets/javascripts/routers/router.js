@@ -3,7 +3,7 @@ Pictolater.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
     this.photoCollection = options.photoCollection;
     this.profileCollection = options.profileCollection;
-    this.attachFilePicker();
+    this.attachCloudinary();
   },
 
   routes: {
@@ -13,11 +13,11 @@ Pictolater.Routers.Router = Backbone.Router.extend({
     "profiles/:id": "showProfile",
   },
 
-  attachFilePicker: function () {
-    var filePickerView = new Pictolater.Views.FilePicker({
+  attachCloudinary: function () {
+    var cloudinaryView = new Pictolater.Views.CloudinaryForm({
       collection: this.photoCollection
     });
-    $('.filepicker-holder').html(filePickerView.render().$el);
+    $('.cloudinary-holder').html(cloudinaryView.render().$el);
   },
 
   photoIndex: function () {

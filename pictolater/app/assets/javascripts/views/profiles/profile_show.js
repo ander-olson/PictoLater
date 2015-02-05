@@ -13,7 +13,6 @@ Pictolater.Views.ProfileShow = Backbone.View.extend({
   render: function () {
     var profileContent = this.template({ profile: this.model });
     this.$el.html(profileContent);
-    debugger
     return this;
   },
 

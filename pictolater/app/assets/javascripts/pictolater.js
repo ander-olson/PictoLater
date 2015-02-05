@@ -8,7 +8,8 @@ window.Pictolater = {
       $rootEl: $('#main'),
       photoCollection: new Pictolater.Collections.Photos(),
       profileCollection: new Pictolater.Collections.Profiles(),
-    })
+    });
+
     Backbone.history.start();
   }
 };
