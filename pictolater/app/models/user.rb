@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :logins
   has_one :profile
+  has_many :photos, foreign_key: :owner_id
 
   def create_session_token
     SecureRandom.urlsafe_base64

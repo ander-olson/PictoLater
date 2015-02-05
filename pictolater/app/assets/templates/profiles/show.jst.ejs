@@ -1,3 +1,8 @@
 <h4><%= profile.get('username') %></h4>
 
+<ul style="list-style: none;">
+  <% profile.photos().each(function (photo) { %>
+    <li><img src="<%= photo.get('url') %>"></li>
+<% }) %>
+<ul>
 <a href="#">Back to all Photos</a>

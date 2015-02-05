@@ -8,8 +8,9 @@ Pictolater.Routers.Router = Backbone.Router.extend({
 
   routes: {
     "": "photoIndex",
+    "photos/:id": "photoShow",
     "profiles": "profileIndex",
-    "profiles/:id": "show",
+    "profiles/:id": "showProfile",
   },
 
   attachFilePicker: function () {
@@ -27,6 +28,16 @@ Pictolater.Routers.Router = Backbone.Router.extend({
     this._swapView(photoIndexView);
   },
 
+  photoShow: function (id) {
+    var photo = this.photoCollection.getOrFetch(id);
+
+    var photoView = new Pictolater.Views.PhotoShow({
+      model: photo
+    });
+
+    this._swapView(photoView);
+  },
+
   profileIndex: function () {
     this.profileCollection.fetch();
 
@@ -37,7 +48,7 @@ Pictolater.Routers.Router = Backbone.Router.extend({
     this._swapView(indexView);
   },
 
-  show: function (id) {
+  showProfile: function (id) {
     var profile = this.profileCollection.getOrFetch(id);
     var showView = new Pictolater.Views.ProfileShow({
       model: profile

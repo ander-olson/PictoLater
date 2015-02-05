@@ -10,10 +10,10 @@
           overflow: hidden;
           margin: 5px auto;
           "
-          class="fancybox">
-          <img style="box-sizing: border-box; margin: 0px auto;"
+          class="thumbnail-feed fancybox">
+          <a href="#photos/<%= photo.id %>"><img style="box-sizing: border-box; margin: 0px auto;"
             class="square-preview" src="<%= photo.get('url') %>"
-            onerror="this.style.display='none';">
+            ></a>
         <li>
           <a href="#/profiles/<%= photo.get('owner_id') %>">
             <%= photo.get('username') %>

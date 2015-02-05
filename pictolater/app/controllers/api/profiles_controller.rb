@@ -1,6 +1,8 @@
 class Api::ProfilesController < ApplicationController
   def show
-    @profile = Profile.find(params[:id])
+    user_id = params[:id]
+    @profile = Profile.where(owner_id: user_id).first
+    @photos = @profile.photos
     render :show
   end
 

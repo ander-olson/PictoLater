@@ -18,9 +18,9 @@ Pictolater.Views.FilePicker = Backbone.View.extend({
       function(Blob){
         var newPhoto = new Pictolater.Models.Photo({
           url: Blob.url,
-          owner_id: 8
+          owner_id: currentUser
         });
-        picker.collection.create(newPhoto)
+        picker.collection.create(newPhoto, { wait: true })
     });
   },
 

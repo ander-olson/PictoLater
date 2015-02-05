@@ -2,7 +2,8 @@ Pictolater.Views.ProfileShow = Backbone.View.extend({
   template: JST["profiles/show"],
 
   initialize: function () {
-    this.listenTo(this.model, "sync", this.render)
+    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model.photos(), "reset", this.render);
   },
 
   events: {
@@ -12,6 +13,7 @@ Pictolater.Views.ProfileShow = Backbone.View.extend({
   render: function () {
     var profileContent = this.template({ profile: this.model });
     this.$el.html(profileContent);
+    debugger
     return this;
   },
 
