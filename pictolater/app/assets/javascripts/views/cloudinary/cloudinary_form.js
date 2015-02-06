@@ -1,5 +1,5 @@
 Pictolater.Views.CloudinaryForm = Backbone.View.extend({
-  template: JST["filepicker/choose"],
+  template: JST["cloudinary/choose"],
 
   initialize: function () {
     this.timeout = undefined;
@@ -24,9 +24,11 @@ Pictolater.Views.CloudinaryForm = Backbone.View.extend({
   cloudinaryDataToModel: function (error, results) {
     var view = this;
     results.forEach( function (result) {
-      var photoUrl = result.url;
+      var photoURL = result.url;
+      var cloudinaryID = result.public_id;
       var newPhoto = new Pictolater.Models.Photo({
-        url: photoUrl,
+        url: photoURL,
+        cloudinary_id: cloudinaryID,
         owner_id: currentUser
       });
       view.collection.create(newPhoto, { wait: true })

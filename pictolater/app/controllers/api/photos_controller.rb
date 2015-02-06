@@ -20,6 +20,6 @@ class Api::PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:url, :owner_id)
+    params.require(:photo).permit(:url, :owner_id, :cloudinary_id)
   end
 end

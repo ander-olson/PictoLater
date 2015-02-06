@@ -6,8 +6,22 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var photosContent = this.template({ photos: this.collection });
-    this.$el.html(photosContent);
+    this.$el.empty();
+    var view = this;
+    this.collection.each(function (photo) {
+
+      var source = $.cloudinary.image(photo.get('cloudinary_id'), {
+        width: 450,
+        height: 450,
+        crop: "fill" })[0].src;
+
+      var photoContent = view.template({
+        source: source,
+        photo: photo
+      });
+
+      view.$el.append(photoContent);
+    })
     return this;
   }
 })

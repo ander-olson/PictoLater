@@ -1,4 +1,4 @@
-<% photos.each(function (photo) { %>
+
   <div class='row'>
     <div class="col-xs-6 col-lg-2 col-xl-2">
     </div>
@@ -11,12 +11,14 @@
           margin: 0px auto;
           "
           class="thumbnail-feed fancybox">
-          <a href="#photos/<%= photo.id %>"><img style="box-sizing: border-box; margin: 0px auto;"
-            class="square-preview" src="<%= photo.get('url') %>"
-            ></a>
+          <a href="#photos/<%= photo.id %>">
+
+            <img src="<%= source %>">
+
+          </a>
         <li>
           <a href="#/profiles/<%= photo.get('owner_id') %>">
-            <%= photo.get('username') %>
+            <%= currentUser %>
           </a>
         </li>
       </ul>
@@ -24,4 +26,3 @@
     <div class="col-lg-2 col-xl-2">
     </div>
   </div>
-<% }) %>
