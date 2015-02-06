@@ -6,21 +6,18 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.empty();
+    this.$el.html(this.template())
     var view = this;
     this.collection.each(function (photo) {
-
-      var source = $.cloudinary.image(photo.get('cloudinary_id'), {
-        width: 450,
-        height: 450,
-        crop: "fill" })[0].src;
-
-      var photoContent = view.template({
-        source: source,
-        photo: photo
+      var photoView = new Pictolater.Views.PhotoIndexItem({
+        model: photo
       });
 
-      view.$el.append(photoContent);
+      var commentsView = new Pictolater.Views.CommentsIndex({
+        collection: photo.comments()
+      });
+
+      view.addSubview('.thumbnail-feed', photoView);
     })
     return this;
   }

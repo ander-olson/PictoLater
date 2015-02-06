@@ -31,6 +31,14 @@ id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
 location    | string    | not null
 
+## comments
+column name  | data type | details
+-------------|-----------|-----------------------
+id           | integer   | not null, primary key
+photo_id     | integer   | not null, foreign key (references photos)
+commenter_id | integer   | not null, foreign key (references users)
+body         | string    | not null
+
 ## subscriptions
 column name | data type | details
 ------------|-----------|-----------------------

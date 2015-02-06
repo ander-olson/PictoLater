@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :profiles
     resources :photos
+    resources :comments
   end
 
   delete 'login' => 'login#destroy'

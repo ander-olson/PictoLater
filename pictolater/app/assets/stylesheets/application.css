@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+.photo-row {
+  padding: 10px;
+  margin: 10px;
+}

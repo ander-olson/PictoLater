@@ -6,7 +6,6 @@ class Api::PhotosController < ApplicationController
 
   def index
     @photos = Photo.all
-    puts "Photo Controller Index being called"
     render :index
   end
 
