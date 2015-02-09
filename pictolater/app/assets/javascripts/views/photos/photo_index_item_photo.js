@@ -1,7 +1,11 @@
 Pictolater.Views.PhotoIndexItemPhoto = Backbone.View.extend({
   template: JST["photos/actual_photo"],
 
+  tagName: 'a',
+
   render: function () {
+    this.$el.attr('href', '#photos/' + this.model.id);
+
     var source = $.cloudinary.image(this.model.get('cloudinary_id'), {
       width: 510,
       height: 510,

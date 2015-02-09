@@ -11,7 +11,7 @@ Pictolater is a clone of Instagram built on Rails and Backbone. Users can:
 - [X] Support for multiple open sessions
 - [X] Upload photos to profile
 - [X] View photos
-- [ ] Comment on feed photos
+- [X] Comment on feed photos
 - [ ] Subscribe to users
 - [ ] View a feed of subscribed feed photos
 - [ ] Choose a photo to use as their profile or cover photo
@@ -38,8 +38,10 @@ I added API routes to serve profile and relevant photo data as JSON, then added 
 
 [Details][phase-two]
 
-### Phase 3: Viewing and Commenting on Photos (~2 days)
-I will add an API route to serve comment data as JSON, then add Backbone models and collections that fetch data from this routes. I will create a PhotoShow view via Backbone in order to see a photo in more detail than the profile page where users can also add/delete and view comments.
+### Phase 3: Viewing and Commenting on Photos (Completed)
+Users can view and add comments to photos that are on their feeds. A Backbone model and collection fetch data via an API route that serves comment data as JSON.
+
+I will create a PhotoShow view via Backbone in order to see a photo in more detail than the profile page where users can also add/delete and view comments.
 
 [Details][phase-three]
 

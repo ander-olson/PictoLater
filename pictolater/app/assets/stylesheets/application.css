@@ -14,9 +14,17 @@
  *= require_self
  */
 
+body {
+
+  background-color: #E9EAEB !important;
+}
+
 #main {
-  background-color: #E9EAEB;
   padding-top: 90px;
+}
+
+.profile-photos-holder {
+  padding-left: 100px;
 }
 
 .photo-row {
@@ -54,7 +62,15 @@ ul {
   margin-top: 5px;
 }
 
+.new-comment-form {
+  padding-left: 10px;
+}
+
 .new-comment-form-input {
   width: 490px;
   margin: 5px auto;
+}
+
+.left-half {
+  text-align: right;
 }

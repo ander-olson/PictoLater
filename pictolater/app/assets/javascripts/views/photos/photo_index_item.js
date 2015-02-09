@@ -11,8 +11,7 @@ Pictolater.Views.PhotoIndexItem = Backbone.CompositeView.extend({
       model: this.model,
       collection: this.model.comments()
     })
-
-    this.$el.html(this.template())
+    this.$el.html(this.template({ user: this.model.owner() } ))
 
     this.addSubview('.photo-holder', photoContent);
     this.addSubview('.comments-holder', commentsContent);

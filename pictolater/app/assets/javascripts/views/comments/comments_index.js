@@ -5,9 +5,10 @@ Pictolater.Views.CommentsIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "add", this.render)
   },
 
-  render: function () {
-    this.$el.html(this.template())
+  className: 'comment-composite-view',
 
+  render: function () {
+    this.$el.html(this.template());
 
     if (this.collection.length > 0) {
       var view = this;

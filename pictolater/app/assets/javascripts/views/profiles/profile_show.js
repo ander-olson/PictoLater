@@ -9,9 +9,7 @@ Pictolater.Views.ProfileShow = Backbone.View.extend({
     this.listenTo(this.collection, "sync reset", this.animate);
   },
 
-  events: {
-    // "click a": "backToIndex"
-  },
+  className: 'profile-photos-holder',
 
   render: function () {
     var view = this;
