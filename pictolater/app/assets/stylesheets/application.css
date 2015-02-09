@@ -14,7 +14,47 @@
  *= require_self
  */
 
+#main {
+  background-color: #E9EAEB;
+  padding-top: 90px;
+}
+
 .photo-row {
   padding: 10px;
   margin: 10px;
+}
+
+.comments-holder {
+  background-color: white;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  max-width: 510px;
+}
+
+ul {
+  list-style: none;
+}
+
+.single-comment-container {
+  padding: 3px;
+  margin-bottom: 3px;
+}
+
+.comments-index:first-child {
+  padding-top: 8px;
+}
+
+.comments-index:last-child {
+  padding-bottom: 10px;
+}
+
+
+.individual-comment {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.new-comment-form-input {
+  width: 490px;
+  margin: 5px auto;
 }

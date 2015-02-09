@@ -1,4 +1,4 @@
-class Api::PhotosController < ApplicationController
+class Api::CommentsController < ApplicationController
 
   def index
     @comments = Comment.where( photo_id: comment_params[:photo_id])
@@ -7,9 +7,9 @@ class Api::PhotosController < ApplicationController
 
   def create
     commenter_id = current_user.id
-    total_photo_params = photo_params.merge({ owner_id: commenter_id })
-    @comment = Comment.create!(total_photo_params)
-    render json: @comment
+    total_comment_params = comment_params.merge({ commenter_id: commenter_id })
+    @comment = Comment.create(total_comment_params)
+    render :show
   end
 
   private

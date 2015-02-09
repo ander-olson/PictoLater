@@ -3,8 +3,8 @@ Pictolater.Views.PhotoIndexItemPhoto = Backbone.View.extend({
 
   render: function () {
     var source = $.cloudinary.image(this.model.get('cloudinary_id'), {
-      width: 450,
-      height: 450,
+      width: 510,
+      height: 510,
       crop: "fill"
     })[0].src;
 
