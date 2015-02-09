@@ -1,4 +1,4 @@
-Pictolater.Views.PhotoShow = Backbone.View.extend({
+Pictolater.Views.PhotoShow = Backbone.CompositeView.extend({
   template: JST["photos/show"],
 
   initialize: function () {
