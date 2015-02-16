@@ -1,0 +1,42 @@
+# Logfile created on 2015-02-12 10:43:35 -0800 by logger.rb/44203
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Starting the New Relic agent in "development" environment.
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] WARN : No configuration file found. Working directory = /Users/Matthew/Desktop/PictoLater/pictolater
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] WARN : Looked in these locations (based on defaults): /Users/Matthew/Desktop/PictoLater/pictolater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/pictolater/newrelic.yml, /Users/Matthew/Desktop/PictoLater/pictolater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/pictolater/newrelic.yml, /Users/Matthew/.newrelic/newrelic.yml, /Users/Matthew/newrelic.yml
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Environment: development
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Dispatcher: webrick
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Application: development
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Installing ActiveRecord 4 instrumentation
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Installing Net instrumentation
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Installing deferred Rack instrumentation
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Installing Rack::Builder middleware instrumentation
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Installing Rails 3+ middleware instrumentation
+[02/12/15 10:43:35 -0800 Milliways-3.local (1805)] INFO : Installing Rails 4 Controller instrumentation
+[02/12/15 10:43:36 -0800 Milliways-3.local (1805)] INFO : Installing Rails 4 view instrumentation
+[02/12/15 10:43:36 -0800 Milliways-3.local (1805)] INFO : Installing Rails 4 Error instrumentation
+[02/12/15 10:43:36 -0800 Milliways-3.local (1805)] INFO : Finished instrumentation
+[02/12/15 10:43:36 -0800 Milliways-3.local (1805)] INFO : Doing deferred dependency-detection before Rack startup
+[02/12/15 10:43:45 -0800 Milliways-3.local (1805)] ERROR : Invalid license key, please contact support@newrelic.com
+[02/12/15 10:43:45 -0800 Milliways-3.local (1805)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[02/16/15 15:26:07 -0800 Milliways-3.local (1805)] INFO : Starting Agent shutdown
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Starting the New Relic agent in "development" environment.
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] WARN : No configuration file found. Working directory = /Users/Matthew/Desktop/PictoLater
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] WARN : Looked in these locations (based on defaults): /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/.newrelic/newrelic.yml, /Users/Matthew/newrelic.yml
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Environment: development
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Dispatcher: webrick
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Application: development
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Installing ActiveRecord 4 instrumentation
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Installing Net instrumentation
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Installing deferred Rack instrumentation
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Installing Rack::Builder middleware instrumentation
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Installing Rails 3+ middleware instrumentation
+[02/16/15 15:27:24 -0800 Milliways-3.local (2054)] INFO : Installing Rails 4 Controller instrumentation
+[02/16/15 15:27:25 -0800 Milliways-3.local (2054)] INFO : Installing Rails 4 view instrumentation
+[02/16/15 15:27:25 -0800 Milliways-3.local (2054)] INFO : Installing Rails 4 Error instrumentation
+[02/16/15 15:27:25 -0800 Milliways-3.local (2054)] INFO : Finished instrumentation
+[02/16/15 15:27:26 -0800 Milliways-3.local (2054)] INFO : Doing deferred dependency-detection before Rack startup
+[02/16/15 15:27:39 -0800 Milliways-3.local (2054)] ERROR : Invalid license key, please contact support@newrelic.com
+[02/16/15 15:27:39 -0800 Milliways-3.local (2054)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.

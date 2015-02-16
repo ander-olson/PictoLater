@@ -1,0 +1,413 @@
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (3.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsersAndLogins (20150203070628)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (61.4ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) NOT NULL, "username" character varying(255) NOT NULL, "password_digest" character varying(255) NOT NULL, "session_token" character varying(255) NOT NULL) [0m
+  [1m[35m (7.5ms)[0m  CREATE TABLE "logins" ("id" serial primary key, "user_id" integer NOT NULL, "session_token" character varying(255) NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX  "index_logins_on_user_id" ON "logins"  ("user_id")[0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_logins_on_session_token" ON "logins"  ("session_token")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150203070628"]]
+  [1m[35m (1.4ms)[0m  COMMIT
+Migrating to CreateProfiles (20150203193533)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (4.6ms)[0m  CREATE TABLE "profiles" ("id" serial primary key, "owner_id" integer, "title" character varying(255)) 
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX  "index_profiles_on_owner_id" ON "profiles"  ("owner_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150203193533"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePhotos (20150204004418)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (4.4ms)[0m  [1mCREATE TABLE "photos" ("id" serial primary key, "owner_id" integer NOT NULL, "url" character varying(255) NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_photos_on_owner_id" ON "photos"  ("owner_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150204004418"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+Migrating to AddTimestampsToPhotos (20150204212424)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (80.3ms)[0m  ALTER TABLE "photos" ADD COLUMN "created_at" timestamp
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "photos" ADD COLUMN "updated_at" timestamp[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150204212424"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to AddPublicIdToPhotos (20150206000456)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.2ms)[0m  [1mALTER TABLE "photos" ADD COLUMN "public_id" character varying(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150206000456"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to RenamePublicIdInPhotos (20150206001253)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mALTER TABLE "photos" RENAME COLUMN "public_id" TO "cloudinary_id"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150206001253"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddComments (20150206164537)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "comments" ("id" serial primary key, "photo_id" integer NOT NULL, "commenter_id" integer NOT NULL, "comment" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.7ms)[0m  CREATE  INDEX  "index_comments_on_photo_id" ON "comments"  ("photo_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150206164537"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Migrating to ChangeCommentColumnName (20150206165724)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "comments" RENAME COLUMN "comment" TO "body"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150206165724"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "comments" ("body", "commenter_id", "created_at", "photo_id", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["body", "Cool elephant!"], ["commenter_id", 2], ["created_at", "2015-02-12 18:43:16.336296"], ["photo_id", 14], ["updated_at", "2015-02-12 18:43:16.336296"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "comments" ("body", "commenter_id", "created_at", "photo_id", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["body", "Baby cheetah!"], ["commenter_id", 1], ["created_at", "2015-02-12 18:43:16.366496"], ["photo_id", 11], ["updated_at", "2015-02-12 18:43:16.366496"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "comments" ("body", "commenter_id", "created_at", "photo_id", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["body", "A little hatchling!"], ["commenter_id", 1], ["created_at", "2015-02-12 18:43:16.369368"], ["photo_id", 15], ["updated_at", "2015-02-12 18:43:16.369368"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "session_token", "username") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "ander@ander.com"], ["password_digest", "$2a$10$6UOj/.uUSL02jXBwS6db1u09a9U5JbYIK3Yjv1Tz6zQrEYi4Cu9Au"], ["session_token", "9p9d4Hi2eMqD7wF5QmzXFw"], ["username", "ander"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("email", "password_digest", "session_token", "username") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "lance"], ["password_digest", "$2a$10$9uJOFddZiVR1omhE7LaoDugPyMi/kqxD/mqUsGG8CDkJ0EO3ZNwCu"], ["session_token", "m8d4F1u59-kFY71I8G0onw"], ["username", "lance"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cloudinary_id", "eh5ic56vym5dkdzhvsjz"], ["created_at", "2015-02-12 18:43:16.399643"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.399643"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423181845/eh5ic56vym5dkdzhvsjz.jpg"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["cloudinary_id", "tnyobwh8kexxjh6nk7ud"], ["created_at", "2015-02-12 18:43:16.403517"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.403517"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423182403/tnyobwh8kexxjh6nk7ud.jpg"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cloudinary_id", "fxqrvaqqyf9cb0suzrou"], ["created_at", "2015-02-12 18:43:16.406301"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.406301"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423182403/fxqrvaqqyf9cb0suzrou.jpg"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["cloudinary_id", "emyxvjof4mfzgntatl3o"], ["created_at", "2015-02-12 18:43:16.408937"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.408937"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423182586/emyxvjof4mfzgntatl3o.jpg"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cloudinary_id", "xgjfrk51z44qe6ts7xof"], ["created_at", "2015-02-12 18:43:16.412169"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.412169"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423183919/xgjfrk51z44qe6ts7xof.jpg"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["cloudinary_id", "etpudfkkj9j8byrx89ha"], ["created_at", "2015-02-12 18:43:16.416715"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.416715"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423183918/etpudfkkj9j8byrx89ha.jpg"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cloudinary_id", "efrfsmriyrqtcycvbyev"], ["created_at", "2015-02-12 18:43:16.420865"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.420865"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423183919/efrfsmriyrqtcycvbyev.jpg"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["cloudinary_id", "ly0t1digqbd6fbyjgbek"], ["created_at", "2015-02-12 18:43:16.423952"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.423952"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423184010/ly0t1digqbd6fbyjgbek.jpg"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cloudinary_id", "m5mc7th1sot7xke6tz1g"], ["created_at", "2015-02-12 18:43:16.426808"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.426808"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423194622/m5mc7th1sot7xke6tz1g.jpg"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["cloudinary_id", "gyv0dpek8geub280woeu"], ["created_at", "2015-02-12 18:43:16.429828"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.429828"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423203077/gyv0dpek8geub280woeu.jpg"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cloudinary_id", "faexezhbqtf4pvvcc96e"], ["created_at", "2015-02-12 18:43:16.432967"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.432967"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423203256/faexezhbqtf4pvvcc96e.jpg"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["cloudinary_id", "ozmchrphpum8wa2qurvy"], ["created_at", "2015-02-12 18:43:16.435602"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.435602"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423203299/ozmchrphpum8wa2qurvy.jpg"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cloudinary_id", "igpqvg10lf14psozz4am"], ["created_at", "2015-02-12 18:43:16.438473"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.438473"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423203547/igpqvg10lf14psozz4am.jpg"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["cloudinary_id", "g3phb7rkyrvhi1y4jjmc"], ["created_at", "2015-02-12 18:43:16.441427"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.441427"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423203647/g3phb7rkyrvhi1y4jjmc.jpg"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "photos" ("cloudinary_id", "created_at", "owner_id", "updated_at", "url") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cloudinary_id", "ggkjvugmifaiog18l93c"], ["created_at", "2015-02-12 18:43:16.444081"], ["owner_id", 1], ["updated_at", "2015-02-12 18:43:16.444081"], ["url", "http://res.cloudinary.com/dcd7no2gu/image/upload/v1423444637/ggkjvugmifaiog18l93c.jpg"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "profiles" ("owner_id") VALUES ($1) RETURNING "id"  [["owner_id", 1]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "profiles" ("owner_id") VALUES ($1) RETURNING "id"[0m  [["owner_id", 2]]
+  [1m[35m (0.5ms)[0m  COMMIT
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-12 10:43:44 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#index as HTML
+  [1m[35mLogin Load (23.3ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 100ms (ActiveRecord: 23.3ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-02-12 10:43:45 -0800
+Processing by SessionsController#new as HTML
+  [1m[36mLogin Load (0.6ms)[0m  [1mSELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 1928ms (Views: 1862.2ms | ActiveRecord: 4.9ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-02-12 10:43:52 -0800
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"oX/7qHFx4rs2aD6iXM4M51gQ/Q/LEW2bf8U2YJ9PrhU=", "user"=>{"username"=>"ander", "password"=>"[FILTERED]"}}
+  [1m[35mLogin Load (0.6ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1
+  [1m[36mUser Load (15.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'ander' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mLogin Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logins" ("session_token", "user_id") VALUES ($1, $2) RETURNING "id"  [["session_token", "86N5BCMQctisIh0GpNCxGQ"], ["user_id", 1]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 319ms (ActiveRecord: 22.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-12 10:43:53 -0800
+Processing by StaticPagesController#index as HTML
+  [1m[35mLogin Load (1.8ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered static_pages/index.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 574ms (Views: 454.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/photos" for 127.0.0.1 at 2015-02-12 10:43:54 -0800
+Processing by Api::PhotosController#index as JSON
+  [1m[35mPhoto Load (15.9ms)[0m  SELECT "photos".* FROM "photos"
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.9ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 6]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (1.1ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 7]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 12]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 13]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 14]]
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (2.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 15]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered api/photos/index.json.jbuilder (255.2ms)
+Completed 200 OK in 274ms (Views: 224.9ms | ActiveRecord: 41.5ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2015-02-16 15:25:47 -0800
+
+LoadError - cannot load such file -- /Users/Matthew/Desktop/PictoLater/pictolater/config/routes.rb:
+  activesupport (4.1.8) lib/active_support/dependencies.rb:241:in `block in load'
+  activesupport (4.1.8) lib/active_support/dependencies.rb:232:in `load_dependency'
+  activesupport (4.1.8) lib/active_support/dependencies.rb:241:in `load'
+  railties (4.1.8) lib/rails/application/routes_reloader.rb:40:in `block in load_paths'
+  railties (4.1.8) lib/rails/application/routes_reloader.rb:40:in `load_paths'
+  railties (4.1.8) lib/rails/application/routes_reloader.rb:16:in `reload!'
+  railties (4.1.8) lib/rails/application/routes_reloader.rb:26:in `block in updater'
+  activesupport (4.1.8) lib/active_support/file_update_checker.rb:75:in `execute'
+  railties (4.1.8) lib/rails/application/routes_reloader.rb:7:in `execute'
+  railties (4.1.8) lib/rails/application/finisher.rb:83:in `block (2 levels) in <module:Finisher>'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:438:in `block in make_lambda'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:184:in `block in simple'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:185:in `block in simple'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:185:in `block in simple'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.8) lib/action_dispatch/middleware/reloader.rb:83:in `prepare!'
+  actionpack (4.1.8) lib/action_dispatch/middleware/reloader.rb:71:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/07b193b6f9af13ea/variables" for 127.0.0.1 at 2015-02-16 15:25:48 -0800
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2015-02-16 15:25:50 -0800
+
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  newrelic_rpm (3.9.7.266) lib/new_relic/agent/instrumentation/middleware_tracing.rb:57:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (199.8ms)
+  Rendered /Users/Matthew/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (340.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-16 15:27:35 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#index as HTML
+  [1m[35mLogin Load (1.8ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered static_pages/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 1353ms (Views: 1184.9ms | ActiveRecord: 16.2ms)
+
+
+Started GET "/api/photos" for 127.0.0.1 at 2015-02-16 15:27:38 -0800
+Processing by Api::PhotosController#index as JSON
+  [1m[35mPhoto Load (1.2ms)[0m  SELECT "photos".* FROM "photos"
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 12]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 13]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 14]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 15]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered api/photos/index.json.jbuilder (145.4ms)
+Completed 200 OK in 162ms (Views: 133.9ms | ActiveRecord: 15.2ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2015-02-16 15:27:44 -0800
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"oX/7qHFx4rs2aD6iXM4M51gQ/Q/LEW2bf8U2YJ9PrhU="}
+  [1m[35mLogin Load (0.8ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ' LIMIT 1
+  [1m[36mUser Load (4.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mLogin Load (0.7ms)[0m  SELECT "logins".* FROM "logins"  WHERE "logins"."user_id" = 1 AND "logins"."session_token" = '86N5BCMQctisIh0GpNCxGQ'
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  DELETE FROM "logins" WHERE "logins"."id" = $1  [["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 17ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-16 15:27:44 -0800
+Processing by StaticPagesController#index as HTML
+  [1m[35mLogin Load (0.5ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-02-16 15:27:44 -0800
+Processing by SessionsController#new as HTML
+  [1m[36mLogin Load (0.6ms)[0m  [1mSELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 583ms (Views: 580.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-16 15:27:50 -0800
+Processing by StaticPagesController#index as HTML
+  [1m[35mLogin Load (0.5ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-02-16 15:27:50 -0800
+Processing by SessionsController#new as HTML
+  [1m[36mLogin Load (0.5ms)[0m  [1mSELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 385ms (Views: 382.6ms | ActiveRecord: 0.5ms)
