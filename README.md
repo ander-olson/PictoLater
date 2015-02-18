@@ -1,9 +1,11 @@
 # Pictolater
 
+Pictolater is a clone of Instagram built on Rails and Backbone. It's currently under construction, but you're welcome to take a look around.
+
 * [Heroku App](http://pictolater.herokuapp.com)
 
 ## Minimum Viable Product
-Pictolater is a clone of Instagram built on Rails and Backbone. Users can:
+Users can:
 
 - [x] Create accounts
 - [X] Create sessions (log in)
@@ -15,6 +17,7 @@ Pictolater is a clone of Instagram built on Rails and Backbone. Users can:
 - [ ] Subscribe to users
 - [ ] View a feed of subscribed feed photos
 - [ ] Choose a photo to use as their profile or cover photo
+- [ ] Choose photo filters.
 
 
 ## Design Docs
@@ -45,7 +48,7 @@ I will create a PhotoShow view via Backbone in order to see a photo in more deta
 
 [Details][phase-three]
 
-### Phase 4: User Feeds (~1.5 days)
+### Phase 4: User Feeds (TODO ~1.5 days)
 I'll start by adding a `feed` route that uses the `current_user`'s
 `subscribed_profiles` association to serve a list of profile photos ordered
 chronologically. On the Backbone side, I'll make a `FeedPhotos` collection that
@@ -54,7 +57,7 @@ collection. Ultimately, this will be the page users see after logging in.
 
 [Details][phase-four]
 
-### Phase 5: Choose a Cover Photo and Profile Photo for Profile View (~1 day)
+### Phase 5: Choose a Cover Photo and Profile Photo for Profile View (TODO ~1 day)
 I'll update the composite ProfileShow View to include a profile photo and a cover photo. I'll need to add Backbone functionality so that users can choose which of their photos they want to choose. I'll update the PhotoShow View so that a user can choose can select to use their own photo for a cover or profile photo.
 
 [Details][phase-five]
