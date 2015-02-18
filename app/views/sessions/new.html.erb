@@ -1,10 +1,74 @@
-<form action="/session" method="post">
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-  <label for="username">Username:</label>
-  <input type="text" name="user[username]" value="<%= @user.username %>" id="username">
+<head>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
 
-  <label for="password">Password:</label>
-  <input type="password" name="user[password]" id="password">
+<div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
 
-  <input type="submit" value="Log In">
-</form>
+          <div class="masthead clearfix">
+            <div class="inner">
+
+
+                  <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand">PictoLater</div>
+                      </div>
+
+                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="navbar-form navbar-left">
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                          <form class="navbar-form navbar-left" action="/session" method="post">
+                            <div class="form-group">
+                              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+                              <input type="text" name="user[username]" placeholder="Username" class="form-control">
+                              <input type="password" name="user[password]" placeholder="Password" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-default">Log In</button>
+                          </form>
+                          <li>
+                          <a href= "<%= new_user_path %>" >Sign Up</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Welcome to PictoLater!</h1>
+            <p class="lead">PictoLater is an Instagram clone. It's currently under construction.</p>
+            <p class="lead">Please feel free to look around!</p>
+            <p class="lead">
+              <form action="/session" method="post">
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+                  <input type="hidden" name="user[username]" value="safari_park">
+                  <input type="hidden" name="user[password]" value="password">
+                <button type="submit" class="btn btn-log btn-default">Guest Log In</button>
+              </form>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+</body>

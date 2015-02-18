@@ -18,7 +18,6 @@ body {
   background-color: #E9EAEB !important;
 }
 
-
 #main {
   padding-top: 90px;
 }
@@ -33,6 +32,8 @@ body {
 }
 
 .comments-holder {
+  margin: 0 auto;
+  text-align: left;
   background-color: white;
   border-bottom-left-radius: 9px;
   border-bottom-right-radius: 9px;
