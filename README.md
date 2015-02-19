@@ -2,7 +2,7 @@
 
 Pictolater is a clone of Instagram built on Rails and Backbone. It's currently under construction, but you're welcome to take a look around.
 
-* [Heroku App](http://pictolater.herokuapp.com)
+* [Heroku App](http://pictolater.com)
 
 ## Minimum Viable Product
 Users can:
@@ -17,8 +17,7 @@ Users can:
 - [ ] Subscribe to users
 - [ ] View a feed of subscribed feed photos
 - [ ] Choose a photo to use as their profile or cover photo
-- [ ] Choose photo filters.
-
+- [ ] Users can manipulate their own photos using filters
 
 ## Design Docs
 * [View Wireframes][views]
@@ -64,7 +63,6 @@ I'll update the composite ProfileShow View to include a profile photo and a cove
 
 ### Bonus Features (TBD)
 - [ ] Add chosen profile photo thumbnails to FeedShow
-- [ ] Users can manipulate their own photos using filters
 - [ ] Users can create their own subfeeds to organize subs by topic
 - [ ] 'Like' button and counter for `PhotoShow` view
 - [ ] Tag photos
