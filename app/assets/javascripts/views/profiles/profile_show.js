@@ -1,5 +1,7 @@
 Pictolater.Views.ProfileShow = Backbone.View.extend({
-  template: JST["profiles/photo_show"],
+  template: JST["profiles/show"],
+
+  photoTemplate: JST["profiles/photo_show"],
 
   initialize: function () {
     this.collection = this.model.photos();
@@ -9,26 +11,44 @@ Pictolater.Views.ProfileShow = Backbone.View.extend({
     this.listenTo(this.collection, "sync reset", this.animate);
   },
 
-  className: 'profile-photos-holder',
+  events: function () {
+    'click #follow-button': "toggleFollow"
+  },
 
   render: function () {
     var view = this;
+    this.$el.html(this.template());
+
     this.collection.each(function (photo) {
       var source = $.cloudinary.image(photo.get('cloudinary_id'), {
         width: 200,
         height: 200,
         crop: "fill" })[0].src;
 
-      var photoContent = view.template({
+      var photoContent = view.photoTemplate({
         profile: view.model,
         source: source,
         photo: photo
       });
 
-      view.$el.append(photoContent);
+      view.$el.find('.profile-photos-holder').append(photoContent);
     })
 
     return this;
+  },
+
+  toggleFollow: function (event) {
+    event.preventDefault();
+    if (this.model.follow().isNew()) {
+      this.model.follow().save();
+      this.followersCount++;
+    } else {
+      this.model.follow().destroy();
+      this.model.follow().set("id", null);
+      this.followersCount = this.followersCount - 1;
+    }
+
+    this.model.set("followers_count", this.followersCount);
   },
 
   backToIndex: function (event) {

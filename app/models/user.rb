@@ -12,6 +12,13 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :photos, foreign_key: :owner_id
 
+  has_many :follows, foreign_key: :followee_id, class_name: "Subscription"
+  has_many :followers, through: :follows, source: :follower
+
+  has_many :followees, foreign_key: :follower_id, class_name: "Subscription"
+  has_many :favorite_people, through: :followees, source: :followee
+  has_many :favorite_peoples_photos, through: :favorite_people, source: :photos
+
   def create_session_token
     SecureRandom.urlsafe_base64
   end

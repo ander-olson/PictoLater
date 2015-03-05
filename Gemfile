@@ -39,6 +39,8 @@ gem 'fancybox2-rails', '~> 0.2.8'
 
 gem 'seed_dump'
 
+gem 'kaminari'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :profiles
     resources :photos
     resources :comments
+    resources :subscriptions
   end
 
   delete 'login' => 'login#destroy'

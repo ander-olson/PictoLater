@@ -5,7 +5,8 @@ class Api::PhotosController < ApplicationController
   end
 
   def index
-    @photos = Photo.all
+    page = params[:page] || 1
+    @photos = current_user.favorite_peoples_photos.page(page)
     render :index
   end
 

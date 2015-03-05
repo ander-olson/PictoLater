@@ -43,5 +43,5 @@ body         | string    | not null
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-profile_id  | integer   | not null, foreign key (references profiles)
+followee_id | integer   | not null, foreign key (references users)
 follower_id | integer   | not null, foreign key (references users)
