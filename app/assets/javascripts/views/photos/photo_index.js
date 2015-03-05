@@ -19,6 +19,15 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
 
       view.addSubview('.thumbnail-feed', photoView);
     })
+    this.listenForScroll();
     return this;
-  }
+  },
+
+  listenForScroll: function () {
+    $( window ).scroll(function () {
+      if ($(window).scrollTop() >= $('.thumbnail-feed').height() - 200) {
+        console.log("reached the bottom!")
+      }
+    })
+  },
 })

@@ -1,3 +1,6 @@
+json.page_number @page_number
+json.total_pages @total_pages
+
 json.photos @photos do |photo|
   json.extract! photo, :id, :owner_id, :url, :updated_at, :created_at, :cloudinary_id
   json.extract! photo.owner, :username

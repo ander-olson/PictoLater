@@ -11,8 +11,8 @@ Pictolater.Views.ProfileShow = Backbone.View.extend({
     this.listenTo(this.collection, "sync reset", this.animate);
   },
 
-  events: function () {
-    'click #follow-button': "toggleFollow"
+  events: {
+    'click #follow-button' : "toggleFollow"
   },
 
   render: function () {
