@@ -3,6 +3,7 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.collection, "sync add", this.render)
+    this.shouldSetThrottle = true
   },
 
   render: function () {
@@ -19,7 +20,10 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
 
       view.addSubview('.thumbnail-feed', photoView);
     })
-    _.throttle(this.listenForScroll(), 300);
+    if (this.shouldSetThrottle) {
+      this.shouldSetThrottle = false;
+      this.listenForScroll()
+    }
     return this;
   },
 
