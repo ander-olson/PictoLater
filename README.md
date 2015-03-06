@@ -14,8 +14,9 @@ Users can:
 - [X] Upload photos to profile
 - [X] View photos
 - [X] Comment on feed photos
+- [X] View a feed of subscribed feed photos
+- [X] Pagination of main photo index view
 - [ ] Subscribe to users
-- [ ] View a feed of subscribed feed photos
 - [ ] Choose a photo to use as their profile or cover photo
 - [ ] Users can manipulate their own photos using filters
 
@@ -67,7 +68,6 @@ I'll update the composite ProfileShow View to include a profile photo and a cove
 - [ ] 'Like' button and counter for `PhotoShow` view
 - [ ] Tag photos
 - [ ] Search for photos by tag
-- [ ] Pagination of the `FeedShow` and `ProfileShow` views
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
