@@ -19,15 +19,29 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
 
       view.addSubview('.thumbnail-feed', photoView);
     })
-    this.listenForScroll();
+    _.throttle(this.listenForScroll(), 300);
     return this;
   },
 
   listenForScroll: function () {
+    var throttleCallback = _.throttle(this.pagination.bind(this), 800);
+    var collection = this;
+
     $( window ).scroll(function () {
-      if ($(window).scrollTop() >= $('.thumbnail-feed').height() - 200) {
-        console.log("reached the bottom!")
+      if ($(window).scrollTop() > $(document).height() - $(window).height() - 100) {
+        if (collection.collection.page_number < collection.collection.total_pages) {
+          throttleCallback();
+        }
       }
     })
   },
+
+  pagination: function () {
+    var collection = this;
+    this.collection.fetch({
+      remove: false,
+      data: {  page: collection.collection.page_number + 1 }
+    })
+    console.log("throttled")
+  }
 })
