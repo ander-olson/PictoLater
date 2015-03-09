@@ -3,7 +3,7 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.collection, "sync add", this.render)
-    this.shouldSetThrottle = true
+    this.listenForScroll()
   },
 
   render: function () {
@@ -20,15 +20,11 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
 
       view.addSubview('.thumbnail-feed', photoView);
     })
-    if (this.shouldSetThrottle) {
-      this.shouldSetThrottle = false;
-      this.listenForScroll()
-    }
     return this;
   },
 
   listenForScroll: function () {
-    var throttleCallback = _.throttle(this.pagination.bind(this), 800);
+    var throttleCallback = _.throttle(this.pagination.bind(this), 2000, {trailing: false});
     var collection = this;
 
     $( window ).scroll(function () {
@@ -46,6 +42,5 @@ Pictolater.Views.PhotoIndex = Backbone.CompositeView.extend({
       remove: false,
       data: {  page: collection.collection.page_number + 1 }
     })
-    console.log("throttled")
   }
 })
