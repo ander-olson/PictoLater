@@ -277,3 +277,93 @@
 [03/09/15 14:41:58 -0700 Milliways-3.local (49783)] ERROR : Invalid license key, please contact support@newrelic.com
 [03/09/15 14:41:58 -0700 Milliways-3.local (49783)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
 [03/09/15 14:52:43 -0700 Milliways-3.local (49783)] INFO : Starting Agent shutdown
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Starting the New Relic agent in "development" environment.
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] WARN : No configuration file found. Working directory = /Users/Matthew/Desktop/PictoLater
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] WARN : Looked in these locations (based on defaults): /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/.newrelic/newrelic.yml, /Users/Matthew/newrelic.yml
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Environment: development
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Dispatcher: webrick
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Application: development
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Installing ActiveRecord 4 instrumentation
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Installing Net instrumentation
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Installing deferred Rack instrumentation
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Installing Rack::Builder middleware instrumentation
+[03/09/15 15:02:42 -0700 Milliways-3.local (50003)] INFO : Installing Rails 3+ middleware instrumentation
+[03/09/15 15:02:43 -0700 Milliways-3.local (50003)] INFO : Installing Rails 4 Controller instrumentation
+[03/09/15 15:02:44 -0700 Milliways-3.local (50003)] INFO : Installing Rails 4 view instrumentation
+[03/09/15 15:02:44 -0700 Milliways-3.local (50003)] INFO : Installing Rails 4 Error instrumentation
+[03/09/15 15:02:44 -0700 Milliways-3.local (50003)] INFO : Finished instrumentation
+[03/09/15 15:02:46 -0700 Milliways-3.local (50003)] INFO : Doing deferred dependency-detection before Rack startup
+[03/11/15 13:42:55 -0700 Milliways-3.local (8005)] INFO : Starting the New Relic agent in "development" environment.
+[03/11/15 13:42:55 -0700 Milliways-3.local (8005)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[03/11/15 13:42:55 -0700 Milliways-3.local (8005)] WARN : No configuration file found. Working directory = /Users/Matthew/Desktop/PictoLater
+[03/11/15 13:42:55 -0700 Milliways-3.local (8005)] WARN : Looked in these locations (based on defaults): /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/.newrelic/newrelic.yml, /Users/Matthew/newrelic.yml
+[03/11/15 13:42:55 -0700 Milliways-3.local (8005)] INFO : Environment: development
+[03/11/15 13:42:55 -0700 Milliways-3.local (8005)] INFO : No known dispatcher detected.
+[03/11/15 13:42:55 -0700 Milliways-3.local (8005)] INFO : Application: development
+[03/11/15 13:42:55 -0700 Milliways-3.local (8005)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Installing ActiveRecord 4 instrumentation
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Installing Net instrumentation
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Installing deferred Rack instrumentation
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Installing Rack::Builder middleware instrumentation
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Installing Rails 3+ middleware instrumentation
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Installing Rails 4 Controller instrumentation
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Installing Rails 4 view instrumentation
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Installing Rails 4 Error instrumentation
+[03/11/15 13:42:56 -0700 Milliways-3.local (8005)] INFO : Finished instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Starting the New Relic agent in "development" environment.
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] WARN : No configuration file found. Working directory = /Users/Matthew/Desktop/PictoLater
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] WARN : Looked in these locations (based on defaults): /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/.newrelic/newrelic.yml, /Users/Matthew/newrelic.yml
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Environment: development
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : No known dispatcher detected.
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Application: development
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Installing ActiveRecord 4 instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Installing Net instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Installing deferred Rack instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Installing Rack::Builder middleware instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Installing Rails 3+ middleware instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Installing Rails 4 Controller instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Installing Rails 4 view instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Installing Rails 4 Error instrumentation
+[03/11/15 14:35:11 -0700 Milliways-3.local (9734)] INFO : Finished instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Starting the New Relic agent in "development" environment.
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] WARN : No configuration file found. Working directory = /Users/Matthew/Desktop/PictoLater
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] WARN : Looked in these locations (based on defaults): /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/.newrelic/newrelic.yml, /Users/Matthew/newrelic.yml
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Environment: development
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Dispatcher: webrick
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Application: development
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Installing ActiveRecord 4 instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Installing Net instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Installing deferred Rack instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Installing Rack::Builder middleware instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Installing Rails 3+ middleware instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Installing Rails 4 Controller instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Installing Rails 4 view instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Installing Rails 4 Error instrumentation
+[03/24/15 03:18:42 -0700 Milliways-3.local (65522)] INFO : Finished instrumentation
+[03/24/15 03:18:43 -0700 Milliways-3.local (65522)] INFO : Doing deferred dependency-detection before Rack startup
+[03/24/15 03:19:17 -0700 Milliways-3.local (65522)] ERROR : Invalid license key, please contact support@newrelic.com
+[03/24/15 03:19:17 -0700 Milliways-3.local (65522)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Starting the New Relic agent in "development" environment.
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] WARN : No configuration file found. Working directory = /Users/Matthew/Desktop/PictoLater
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] WARN : Looked in these locations (based on defaults): /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/Desktop/PictoLater/config/newrelic.yml, /Users/Matthew/Desktop/PictoLater/newrelic.yml, /Users/Matthew/.newrelic/newrelic.yml, /Users/Matthew/newrelic.yml
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Environment: development
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : No known dispatcher detected.
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Application: development
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Installing ActiveRecord 4 instrumentation
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Installing Net instrumentation
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Installing deferred Rack instrumentation
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Installing Rack::Builder middleware instrumentation
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Installing Rails 3+ middleware instrumentation
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Installing Rails 4 Controller instrumentation
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Installing Rails 4 view instrumentation
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Installing Rails 4 Error instrumentation
+[03/24/15 03:19:57 -0700 Milliways-3.local (65630)] INFO : Finished instrumentation
+[03/24/15 03:24:28 -0700 Milliways-3.local (65522)] INFO : Starting Agent shutdown

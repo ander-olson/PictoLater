@@ -16881,3 +16881,115 @@ Processing by Api::PhotosController#index as JSON
   [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 26]]
   Rendered api/photos/index.json.jbuilder (26.8ms)
 Completed 200 OK in 41ms (Views: 26.4ms | ActiveRecord: 6.2ms)
+  [1m[36mSubscription Load (52.2ms)[0m  [1mSELECT "subscriptions".* FROM "subscriptions"[0m
+  [1m[36mSubscription Load (1.6ms)[0m  [1mSELECT "subscriptions".* FROM "subscriptions"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-24 03:19:16 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (107.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#index as HTML
+  [1m[35mLogin Load (67.9ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 166ms (ActiveRecord: 67.9ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-03-24 03:19:18 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mLogin Load (0.6ms)[0m  [1mSELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 2085ms (Views: 1990.6ms | ActiveRecord: 5.9ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-03-24 03:19:24 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"/IDi5N2yV6iHj/koPIoYi8SrUm6EpccwLgQdYs2BYvc=", "user"=>{"username"=>"safari_park", "password"=>"[FILTERED]"}}
+  [1m[35mLogin Load (0.7ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" IS NULL LIMIT 1
+  [1m[36mUser Load (115.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'safari_park' LIMIT 1[0m
+  [1m[35m (17.8ms)[0m  BEGIN
+  [1m[36mLogin Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1[0m
+  [1m[35mSQL (103.9ms)[0m  INSERT INTO "logins" ("session_token", "user_id") VALUES ($1, $2) RETURNING "id"  [["session_token", "52cnf3fLf_IHPRDJPwmN6Q"], ["user_id", 1]]
+  [1m[36m (48.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 562ms (ActiveRecord: 291.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-24 03:19:25 -0700
+Processing by StaticPagesController#index as HTML
+  [1m[35mLogin Load (0.6ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1
+  [1m[36mUser Load (16.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered static_pages/index.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 436ms (Views: 368.4ms | ActiveRecord: 16.9ms)
+
+
+Started GET "/api/photos" for 127.0.0.1 at 2015-03-24 03:19:27 -0700
+Processing by Api::PhotosController#index as JSON
+  [1m[35mLogin Load (0.8ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (39.4ms)[0m  SELECT COUNT(*) FROM "photos" INNER JOIN "users" ON "photos"."owner_id" = "users"."id" INNER JOIN "subscriptions" ON "users"."id" = "subscriptions"."followee_id" WHERE "subscriptions"."follower_id" = $1  [["follower_id", 1]]
+  [1m[36mPhoto Load (15.8ms)[0m  [1mSELECT  "photos".* FROM "photos" INNER JOIN "users" ON "photos"."owner_id" = "users"."id" INNER JOIN "subscriptions" ON "users"."id" = "subscriptions"."followee_id" WHERE "subscriptions"."follower_id" = $1  ORDER BY updated_at DESC LIMIT 5 OFFSET 0[0m  [["follower_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (1.8ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 18]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 22]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 23]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 26]]
+  Rendered api/photos/index.json.jbuilder (112.9ms)
+Completed 200 OK in 309ms (Views: 107.1ms | ActiveRecord: 68.3ms)
+
+
+Started GET "/api/photos?page=2" for 127.0.0.1 at 2015-03-24 03:19:29 -0700
+Processing by Api::PhotosController#index as JSON
+  Parameters: {"page"=>"2"}
+  [1m[35mLogin Load (0.7ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (1.4ms)[0m  SELECT COUNT(*) FROM "photos" INNER JOIN "users" ON "photos"."owner_id" = "users"."id" INNER JOIN "subscriptions" ON "users"."id" = "subscriptions"."followee_id" WHERE "subscriptions"."follower_id" = $1  [["follower_id", 1]]
+  [1m[36mPhoto Load (1.9ms)[0m  [1mSELECT  "photos".* FROM "photos" INNER JOIN "users" ON "photos"."owner_id" = "users"."id" INNER JOIN "subscriptions" ON "users"."id" = "subscriptions"."followee_id" WHERE "subscriptions"."follower_id" = $1  ORDER BY updated_at DESC LIMIT 5 OFFSET 5[0m  [["follower_id", 1]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 29]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 30]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 31]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 28]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 20]]
+  Rendered api/photos/index.json.jbuilder (33.0ms)
+Completed 200 OK in 48ms (Views: 30.8ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/api/photos?page=3" for 127.0.0.1 at 2015-03-24 03:19:31 -0700
+Processing by Api::PhotosController#index as JSON
+  Parameters: {"page"=>"3"}
+  [1m[35mLogin Load (0.9ms)[0m  SELECT  "logins".* FROM "logins"  WHERE "logins"."session_token" = '52cnf3fLf_IHPRDJPwmN6Q' LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (1.4ms)[0m  SELECT COUNT(*) FROM "photos" INNER JOIN "users" ON "photos"."owner_id" = "users"."id" INNER JOIN "subscriptions" ON "users"."id" = "subscriptions"."followee_id" WHERE "subscriptions"."follower_id" = $1  [["follower_id", 1]]
+  [1m[36mPhoto Load (1.8ms)[0m  [1mSELECT  "photos".* FROM "photos" INNER JOIN "users" ON "photos"."owner_id" = "users"."id" INNER JOIN "subscriptions" ON "users"."id" = "subscriptions"."followee_id" WHERE "subscriptions"."follower_id" = $1  ORDER BY updated_at DESC LIMIT 5 OFFSET 10[0m  [["follower_id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 19]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (14.6ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 15]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (1.5ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1[0m  [["photo_id", 14]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."photo_id" = $1  [["photo_id", 12]]
+  Rendered api/photos/index.json.jbuilder (52.2ms)
+Completed 200 OK in 68ms (Views: 34.6ms | ActiveRecord: 24.5ms)
+  [1m[36mComment Load (1.6ms)[0m  [1mSELECT "comments".* FROM "comments"[0m
